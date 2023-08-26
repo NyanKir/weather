@@ -1,4 +1,4 @@
-import { RouteHandle } from '@interfaces/route';
+import { RouteHandle } from '@/declarations/route';
 import { NextFunction, Request, Response } from 'express';
 import { AuthService } from '@/services/auth.service';
 import { getAuthorization } from '@middlewares/auth.middleware';

@@ -5,6 +5,7 @@ interface IConfig {
   url: string;
   options?: ConnectOptions;
 }
+
 export const dbConnection: IConfig = {
   url: `mongodb://${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
 };

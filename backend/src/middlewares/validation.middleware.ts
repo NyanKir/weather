@@ -1,4 +1,4 @@
-import { RouteHandle } from '@interfaces/route';
+import { RouteHandle } from '@/declarations/route';
 import Joi from 'joi';
 import { ErrorBuilder } from '@exceptions/http.exception';
 

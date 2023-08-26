@@ -1,7 +1,7 @@
 import express, { Express } from 'express';
 import { PORT } from '@config';
-import { Routes } from '@interfaces/route';
-import { connect } from 'mongoose';
+import { Routes } from '@/declarations/route';
+import mongoose, { connect } from 'mongoose';
 import { dbConnection } from '@/config/database';
 import * as console from 'console';
 import cookieParser from 'cookie-parser';
@@ -13,7 +13,7 @@ import { ErrorMiddleware } from '@middlewares/error.middleware';
 export class App {
   private app: Express;
   private port: any;
-  constructor(routes: Routes[]) {
+  constructor(routes: Routes[] = []) {
     this.app = express();
     this.port = PORT;
 
@@ -22,12 +22,21 @@ export class App {
     this.initRoutes(routes);
   }
 
-  public async listen() {
-    this.app.listen(this.port, () => {
+  public listen() {
+    const server = this.app.listen(this.port, () => {
       console.log(
         `⚡️[server]: Server is running at http://localhost:${this.port}`
       );
     });
+
+    server.on('close', () => {
+      mongoose.connection.close();
+      console.log(
+        `⚡️[server]: Server is closed at http://localhost:${this.port}`
+      );
+    });
+
+    return server;
   }
 
   private async connectToDatabase() {
@@ -42,7 +51,8 @@ export class App {
     this.app.use(cookieParser());
   }
 
-  private initRoutes(routes: Routes[]) {
+  private initRoutes(routes: Routes[] = []) {
+    this.app.get('/', (req, res) => res.sendStatus(200));
     routes.forEach((route) => {
       this.app.use('/', route.router);
     });

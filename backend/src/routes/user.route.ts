@@ -1,4 +1,4 @@
-import { Routes } from '@interfaces/route';
+import { Routes } from '@/declarations/route';
 import { Router } from 'express';
 import { WeatherController } from '@/controllers/weather.controller';
 import { WeatherService } from '@/services/weather.service';

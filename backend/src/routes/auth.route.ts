@@ -1,4 +1,4 @@
-import { Routes } from '@interfaces/route';
+import { Routes } from '@/declarations/route';
 import { Router } from 'express';
 import { AuthController } from '@/controllers/auth.controller';
 import {

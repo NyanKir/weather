@@ -1,5 +1,5 @@
 import { WeatherService } from '@/services/weather.service';
-import { RouteHandle } from '@interfaces/route';
+import { RouteHandle } from '@/declarations/route';
 import { NextFunction, Request, Response } from 'express';
 
 interface IController {

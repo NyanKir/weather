@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { ErrorBuilder, HttpException } from '@exceptions/http.exception';
+import { ErrorBuilder } from '@exceptions/http.exception';
 import { SECRET_KEY } from '@config';
 import { verify } from 'jsonwebtoken';
 import { IUser, UserModel } from '@/models/user';
@@ -14,11 +14,21 @@ export const getAuthorization = (
   req: Request
 ): { cookie: unknown; header: unknown } => {
   const cookie = req?.cookies?.Authorization;
-  let header = req?.header('Authorization');
+  let header;
 
-  if (header) {
-    header = header.split('Bearer ')[1];
+  try {
+    header = req?.header('Authorization');
+
+    if (header) {
+      header = header.split('Bearer ')[1];
+    }
+  } catch (e) {
+    return {
+      cookie: undefined,
+      header: undefined
+    };
   }
+
   return {
     cookie,
     header
