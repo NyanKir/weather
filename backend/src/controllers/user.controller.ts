@@ -17,7 +17,7 @@ export class AuthController implements IController {
   }
   async logIn(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { cookie, email, token } = await this.auth.login(req.body);
+      const { cookie, token } = await this.auth.login(req.body);
       res.setHeader('Set-Cookie', [cookie]);
       res.send({ token });
     } catch (e) {
@@ -25,7 +25,7 @@ export class AuthController implements IController {
     }
   }
 
-  async logOut(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async logOut(req: Request, res: Response): Promise<void> {
     const { cookie: sessionId } = getAuthorization(req);
 
     await this.auth.logOut(sessionId);

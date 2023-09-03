@@ -12,7 +12,7 @@ import { ErrorMiddleware } from '@middlewares/error.middleware';
 
 export class App {
   private app: Express;
-  private port: any;
+  private readonly port: any;
   constructor(routes: Routes[] = []) {
     this.app = express();
     this.port = PORT;
