@@ -1,11 +1,15 @@
 {
   "workspaces": [
     "backend",
+    "frontend",
     "common"
   ],
   "author": "NyanKir",
   "license": "ISC",
   "dependencies": {
     "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "lerna": "^7.2.0"
   }
 }
