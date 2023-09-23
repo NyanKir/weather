@@ -1,6 +1,7 @@
 {
   "name": "@weather/common",
   "version": "1.0.0",
-  "dependencies": {
-  }
+  "types": "index.d.ts",
+  "private": true,
+  "dependencies": {}
 }

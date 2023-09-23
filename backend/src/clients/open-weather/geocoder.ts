@@ -1,5 +1,4 @@
 import { OpenWeatherClient } from '@/clients/open-weather/base';
-import { Coordinate } from '@/clients/open-weather/types';
 
 export class GeocoderApi extends OpenWeatherClient {
   constructor() {
